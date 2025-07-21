@@ -175,7 +175,7 @@ This project is part of the 42 School curriculum. The code is written for educat
 [![GitHub forks](https://img.shields.io/github/forks/yourusername/philosophers-42?style=social)](https://github.com/yourusername/philosophers-42/network)
 [![GitHub issues](https://img.shields.io/github/issues/yourusername/philosophers-42)](https://github.com/yourusername/philosophers-42/issues)
 
-**Author**: [Your Name]  
+**Author**: amine el hassak
 **School**: 42 School  
 **Project**: Philosophers  
 **Last updated**: 2024
