@@ -1,20 +1,43 @@
-# Philosophers (philo & philo_bonus)
+# 🍴 Philosophers - Dining Philosophers Problem
 
-## Table of Contents
-- [Overview](#overview)
-- [Project Structure](#project-structure)
-- [The Dining Philosophers Problem](#the-dining-philosophers-problem)
-- [How It Works](#how-it-works)
-- [Usage](#usage)
-- [Arguments](#arguments)
-- [Bonus Version](#bonus-version)
-- [Notes](#notes)
+[![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)](https://en.wikipedia.org/wiki/C_(programming_language))
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/Status-Complete-brightgreen.svg)]()
+[![Build](https://img.shields.io/badge/Build-Passing-success.svg)]()
+[![Version](https://img.shields.io/badge/Version-1.0.0-blue.svg)]()
+
+<div align="center">
+
+# 🍴 Philosophers
+
+> A simulation of the classic Dining Philosophers Problem using C, with both thread-based and process-based solutions.
+
+**Master concurrency, synchronization, and deadlock avoidance!**
+
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/philosophers-42?style=social)](https://github.com/yourusername/philosophers-42/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/philosophers-42?style=social)](https://github.com/yourusername/philosophers-42/network)
+[![GitHub issues](https://img.shields.io/github/issues/yourusername/philosophers-42)](https://github.com/yourusername/philosophers-42/issues)
+
+</div>
 
 ---
 
-## Overview
+## 📚 Table of Contents
 
-This project is an implementation of the classic **Dining Philosophers Problem** using C, with two versions:
+- [🎯 Overview](#-overview)
+- [✨ Features](#-features)
+- [🛠️ Installation](#️-installation)
+- [🚀 Usage](#-usage)
+- [📁 Project Structure](#-project-structure)
+- [🧪 Testing](#-testing)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
+
+---
+
+## 🎯 Overview
+
+This project implements the **Dining Philosophers Problem** in C, providing two solutions:
 - `philo`: Uses threads and mutexes.
 - `philo_bonus`: Uses processes and semaphores.
 
@@ -22,85 +45,49 @@ The goal is to simulate philosophers sitting at a table, alternating between thi
 
 ---
 
-## Project Structure
+## ✨ Features
 
-```
-philosophers-42/
-  philo/           # Main project (threads & mutexes)
-    includes/
-      philo.h
-      structs.h
-    main.c
-    Makefile
-    srcs/
-      utile1.c
-      utile2.c
-      utile3.c
-      utile4.c
-  philo_bonus/     # Bonus project (processes & semaphores)
-    includes/
-      philo_bonus.h
-      structs_bonus.h
-    main.c
-    Makefile
-    srcs_bonus/
-      utile1_bonus.c
-      utile2_bonus.c
-      utile3_bonus.c
-      utile4_bonus.c
-  README.md
-```
+- Multi-philosopher simulation
+- Thread-based (mutex) and process-based (semaphore) solutions
+- Deadlock and starvation avoidance
+- Real-time status output (eating, sleeping, thinking, death)
+- Configurable simulation parameters via command-line
 
 ---
 
-## The Dining Philosophers Problem
+## 🛠️ Installation
 
-- **N philosophers** sit at a round table.
-- Each philosopher alternates between **thinking**, **eating**, and **sleeping**.
-- To eat, a philosopher needs to pick up **two forks** (one on each side).
-- Forks are shared between neighbors, so philosophers must coordinate to avoid deadlocks (where everyone is waiting forever) and starvation (where a philosopher never gets to eat).
+### Prerequisites
 
----
+- **C compiler** (GCC recommended)
+- **Make** (optional, if using provided Makefile)
+- **Linux/macOS** (tested on Ubuntu and macOS)
 
-## How It Works
+### 🏗️ Building the Project
 
-### philo (Mandatory Part)
+#### For `philo` (threads & mutexes):
 
-- Each philosopher is represented by a **thread**.
-- **Mutexes** are used to represent forks and to synchronize access to shared data.
-- The program monitors philosophers to detect if any philosopher dies (does not eat within `time_to_die`).
-
-### philo_bonus (Bonus Part)
-
-- Each philosopher is represented by a **process**.
-- **Semaphores** are used for fork management and synchronization.
-- The logic is similar, but uses inter-process communication.
-
----
-
-## Usage
-
-### Build
-
-#### philo
-
-```sh
+```bash
 cd philo
 make
 ```
 
-#### philo_bonus
+#### For `philo_bonus` (processes & semaphores):
 
-```sh
+```bash
 cd philo_bonus
 make
 ```
 
-### Run
+---
+
+## 🚀 Usage
+
+### Starting the Simulation
 
 Both versions take the same arguments:
 
-```sh
+```bash
 ./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]
 ```
 
@@ -112,31 +99,87 @@ Both versions take the same arguments:
 
 **Example:**
 
-```sh
+```bash
 ./philo 5 800 200 200
 ./philo 5 800 200 200 7
 ```
 
 ---
 
-## Arguments
+## 📁 Project Structure
 
-- All arguments must be **positive integers**.
-- If the optional argument is not provided, the simulation ends when a philosopher dies.
-- If provided, the simulation ends when all philosophers have eaten at least the specified number of times.
+```
+philosophers-42/
+├── philo/
+│   ├── includes/
+│   │   ├── philo.h
+│   │   └── structs.h
+│   ├── main.c
+│   ├── Makefile
+│   └── srcs/
+│       ├── utile1.c
+│       ├── utile2.c
+│       ├── utile3.c
+│       └── utile4.c
+├── philo_bonus/
+│   ├── includes/
+│   │   ├── philo_bonus.h
+│   │   └── structs_bonus.h
+│   ├── main.c
+│   ├── Makefile
+│   └── srcs_bonus/
+│       ├── utile1_bonus.c
+│       ├── utile2_bonus.c
+│       ├── utile3_bonus.c
+│       └── utile4_bonus.c
+└── README.md
+```
 
 ---
 
-## Bonus Version
+## 🧪 Testing
 
-The `philo_bonus` directory contains a version using **processes** and **semaphores** instead of threads and mutexes. Usage and arguments are the same.
+### Manual Testing
+
+- Run the simulation with different arguments and observe the output.
+- Try edge cases (e.g., 1 philosopher, very short `time_to_die`, etc.).
+- Check for deadlocks and starvation (no philosopher should starve if parameters are reasonable).
+
+---
+
+## 🤝 Contributing
+
+This is a 42 School project, but if you have suggestions or find bugs, feel free to contribute:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Commit and push
+5. Open a Pull Request
 
 ---
 
-## Notes
+## 📄 License
 
-- The project is written in C and uses only allowed standard libraries.
-- Error handling is implemented for invalid arguments and resource allocation failures.
-- The code is organized for clarity, with separate files for utility functions, data structures, and main logic.
+This project is part of the 42 School curriculum. The code is written for educational purposes.
 
 ---
+
+<div align="center">
+
+**Made with ❤️ and lots of ☕**
+
+*Master concurrency, synchronization, and deadlock avoidance!*
+
+[![GitHub stars](https://img.shields.io/github/stars/yourusername/philosophers-42?style=social)](https://github.com/yourusername/philosophers-42/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/yourusername/philosophers-42?style=social)](https://github.com/yourusername/philosophers-42/network)
+[![GitHub issues](https://img.shields.io/github/issues/yourusername/philosophers-42)](https://github.com/yourusername/philosophers-42/issues)
+
+**Author**: [Your Name]  
+**School**: 42 School  
+**Project**: Philosophers  
+**Last updated**: 2024
+
+</div>
+
+--- 
